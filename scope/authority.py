@@ -10,8 +10,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Set
 
-import fcntl
-
 from .catalog import DEPLOYMENT_TIERS, SEVERITIES
 from .common import (
     duplicates,
@@ -406,6 +404,14 @@ def _append_audit_event(
     occurred_at: Optional[datetime] = None,
 ) -> Dict[str, Any]:
     """Append one fsync'd, hash-chained decision or override event."""
+
+    try:
+        import fcntl
+    except ImportError as exc:
+        raise BoundaryError(
+            "Append-only audit logging requires POSIX file locking (fcntl), "
+            "unavailable on this platform"
+        ) from exc
 
     if event_type not in {"CLIENT_DECISION", "EXCEPTION_OVERRIDE"}:
         raise BoundaryError("Unsupported audit event type")

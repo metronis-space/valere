@@ -97,6 +97,8 @@ python3 -m scope rights-check --rights approved-rights.yaml --asset ASSET --use 
 python3 -m scope impact --previous scope-v1.yaml --current scope-v2.yaml
 python3 -m scope classify --governance approved-governance.yaml --tenant TENANT --matter MATTER --text "text"
 python3 -m scope authorize --authority approved-authority.yaml --request request.yaml --approvals approvals.yaml
+python3 -m scope audit-append --authority approved-authority.yaml --log var/audit/client-decisions.jsonl \
+  --event-type CLIENT_DECISION --actor ACTOR_ID --payload decision.yaml
 ```
 
 `validate` returns status `BLOCKED` and exit code 2 until every external

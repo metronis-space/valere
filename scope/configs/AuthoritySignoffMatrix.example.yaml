@@ -1,0 +1,49 @@
+# ===========================================================================
+# TEST FIXTURE — NOT A REAL DECISION — for demo/testing purposes only.
+#
+# The roles below are FICTIONAL characters written into the harvey-labs
+# benchmark task (github.com/harveyai/harvey-labs, commit 845a0884,
+# tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-
+# material-contracts/documents/deal-overview-memo.docx) for evaluation
+# realism. They are NOT real people, and do NOT satisfy this project's A4
+# gate — accountability is the one boundary question product.md §11 treats
+# as structurally non-automatable; a placeholder name here would be exactly
+# the fabrication that principle exists to prevent. See
+# AuthoritySignoffMatrix.template.yaml (unchanged, still TBD) for this
+# project's actual, honest state — it must stay empty until a real design
+# partner supplies real, accountable people.
+# ===========================================================================
+
+roles_and_credentials:
+  # Illustrative only — fictional benchmark characters, not real people:
+  - role: "In-house deal counsel (fictional: Sarah Levine, VP of Legal, Ridgeline Capital Partners)"
+    credential_type: "Illustrative only — no real bar admission/credential exists to verify"
+    delegated_authority_scope: "Fictional: prepares the CoC analysis, restricts distribution, signs the memo"
+  - role: "Deal sponsor / commercial decision-maker (fictional: David Thornton, Managing Partner, Ridgeline)"
+    credential_type: "N/A"
+    delegated_authority_scope: "Fictional: receives Board presentation, approves deal economics"
+  - role: "Buyer's outside counsel (fictional: Thomas Blackwood, Partner, Whitfield & Crane LLP)"
+    credential_type: "N/A"
+    delegated_authority_scope: "Fictional: leads legal workstream, coordinates with in-house counsel"
+  - role: "Target's outside counsel (fictional: Jennifer Okafor, Partner, Garrett & Holloway LLP)"
+    credential_type: "N/A"
+    delegated_authority_scope: "Fictional: represents Target/Aldersgate side"
+
+regulatory_framework:
+  aba_formal_opinion_512: "Generative AI competence, independent verification, confidentiality, supervision"
+  aba_model_rules: ["1.2 (scope of representation)", "1.6 (confidentiality)", "2.1 (advisor)", "5.5 (unauthorized practice)"]
+
+approval_thresholds: "Illustrative: fictional Board presentation scheduled 2025-08-15 as the approval gate before signing 2025-08-22"
+conflict_ethical_wall_checks: "N/A — not addressed in source memo"
+severity_based_review_policy: "Illustrative: source memo's own risk factors section (customer concentration, tech-license dependency, infra dependency, debt payoff, management retention, consent complexity, healthcare-data compliance) is a real example of severity-tiered issue flagging a report should produce — fictional content"
+
+lawyer_of_record: "TBD — genuinely unresolved for this project. (Fictional example only: Sarah Levine / Thomas Blackwood play this role within the benchmark scenario.)"
+customer_owner_mapping: "TBD — genuinely unresolved for this project."
+release_signoff_workflow: "TBD — genuinely unresolved for this project."
+
+client_decision_capture_log: []
+exception_override_audit_log: []
+
+known_gaps:
+  - "Every name above is fictional benchmark content, not a real accountable person. This file exists to show the schema shape, not to satisfy A4."
+  - "product.md §9: a narrow pilot needs a 6-15-person practicing-lawyer bench — a role list like the one above, but with real, credentialed, engaged people, not characters from a public benchmark."

@@ -1,0 +1,155 @@
+# RightsRegister v1 template — A2 / AR-000
+#
+# Public visibility is not permission. Every lifecycle use is explicit and
+# fail-closed. TBD owner/reviewer values keep the real Phase 0 gate blocked.
+
+schema_version: 1
+register_id: valere-rights
+register_version: 1
+rights_owner: TBD
+
+assets:
+  - asset_id: harvey-lab
+    asset_type: BENCHMARK_DATASET
+    lifecycle: ACTIVE
+    source:
+      uri: "https://github.com/harveyai/harvey-labs"
+      content_fingerprint: "git:845a088"
+      acquired_at: "2026-07-21"
+    owner:
+      owner_id: harvey-ai
+      legal_name: "Harvey AI"
+      rights_contact: public-license
+    grant:
+      kind: LICENSE
+      reference: MIT
+      reviewed_by: TBD
+      reviewed_at: TBD
+      expiry_date: null
+      permissions:
+        ingest: ALLOW
+        transform: ALLOW
+        train: ALLOW
+        evaluate: ALLOW
+        share: ALLOW
+        publish: ALLOW
+      derivative_outputs:
+        creation_allowed: true
+        ownership: PROJECT_SUBJECT_TO_LICENSE
+        release_allowed: true
+      checkpoints:
+        finetune_allowed: true
+        ownership: SUBJECT_TO_MODEL_AND_LICENSE_TERMS
+        distribution_allowed: false
+    classifications:
+      confidentiality: PUBLIC
+      privilege: NONE
+      personal_data: NONE
+    obligations:
+      attribution: PRESERVE_MIT_NOTICE
+      deletion: NONE
+      publication: PRESERVE_MIT_NOTICE
+      renewal: NONE
+    lineage:
+      parent_asset_ids: []
+      transformation: SOURCE
+
+  - asset_id: cuad
+    asset_type: BENCHMARK_DATASET
+    lifecycle: ACTIVE
+    source:
+      uri: "https://www.atticusprojectai.org/cuad"
+      content_fingerprint: TBD
+      acquired_at: TBD
+    owner:
+      owner_id: atticus-project
+      legal_name: "The Atticus Project"
+      rights_contact: public-license
+    grant:
+      kind: LICENSE
+      reference: CC-BY-4.0
+      reviewed_by: TBD
+      reviewed_at: TBD
+      expiry_date: null
+      permissions:
+        ingest: ALLOW
+        transform: ALLOW
+        train: ALLOW
+        evaluate: ALLOW
+        share: ALLOW
+        publish: ALLOW
+      derivative_outputs:
+        creation_allowed: true
+        ownership: PROJECT_SUBJECT_TO_LICENSE
+        release_allowed: true
+      checkpoints:
+        finetune_allowed: true
+        ownership: SUBJECT_TO_MODEL_AND_LICENSE_TERMS
+        distribution_allowed: false
+    classifications:
+      confidentiality: PUBLIC
+      privilege: NONE
+      personal_data: REVIEW
+    obligations:
+      attribution: CC_BY_4_ATTRIBUTION_AND_CHANGE_NOTICE
+      deletion: NONE
+      publication: ATTRIBUTION_REQUIRED
+      renewal: NONE
+    lineage:
+      parent_asset_ids: []
+      transformation: SOURCE
+
+  # Candidate benchmarks stay blocked until independently reviewed. They are
+  # inventoried separately so a public URL never becomes an implied grant.
+  - asset_id: additional-public-benchmarks
+    asset_type: BENCHMARK_DATASET_GROUP
+    lifecycle: BLOCKED
+    source:
+      uri: "MAUD / ContractNLI / LegalBench / LegalBench-RAG"
+      content_fingerprint: NOT_ACQUIRED
+      acquired_at: NOT_ACQUIRED
+    owner:
+      owner_id: TBD
+      legal_name: TBD
+      rights_contact: TBD
+    grant:
+      kind: LICENSE
+      reference: TBD
+      reviewed_by: TBD
+      reviewed_at: TBD
+      expiry_date: null
+      permissions:
+        ingest: REVIEW
+        transform: REVIEW
+        train: REVIEW
+        evaluate: REVIEW
+        share: REVIEW
+        publish: REVIEW
+      derivative_outputs:
+        creation_allowed: false
+        ownership: TBD
+        release_allowed: false
+      checkpoints:
+        finetune_allowed: false
+        ownership: TBD
+        distribution_allowed: false
+    classifications:
+      confidentiality: PUBLIC
+      privilege: NONE
+      personal_data: REVIEW
+    obligations:
+      attribution: TBD
+      deletion: TBD
+      publication: TBD
+      renewal: TBD
+    lineage:
+      parent_asset_ids: []
+      transformation: SOURCE_CANDIDATE
+
+rights_review_queue:
+  - {review_id: RR-001, asset_id: additional-public-benchmarks, use: ingest, reason: "Verify source-specific license", status: OPEN, owner: TBD, due_at: TBD}
+  - {review_id: RR-002, asset_id: additional-public-benchmarks, use: transform, reason: "Verify derivative rights", status: OPEN, owner: TBD, due_at: TBD}
+  - {review_id: RR-003, asset_id: additional-public-benchmarks, use: train, reason: "Verify training rights", status: OPEN, owner: TBD, due_at: TBD}
+  - {review_id: RR-004, asset_id: additional-public-benchmarks, use: evaluate, reason: "Verify evaluation rights", status: OPEN, owner: TBD, due_at: TBD}
+  - {review_id: RR-005, asset_id: additional-public-benchmarks, use: share, reason: "Verify sharing rights", status: OPEN, owner: TBD, due_at: TBD}
+  - {review_id: RR-006, asset_id: additional-public-benchmarks, use: publish, reason: "Verify publication rights", status: OPEN, owner: TBD, due_at: TBD}

@@ -1,0 +1,34 @@
+# ===========================================================================
+# TEST FIXTURE — NOT A REAL DECISION — for demo/testing purposes only.
+#
+# Illustrates what a real, filled asset entry looks like, using an asset that
+# is ALREADY genuinely rights-cleared: the specific task/documents fetched
+# from harveyai/harvey-labs (MIT license, commit 845a0884) this session. This
+# is not a new rights grant — it's the same harvey-lab entry already in
+# RightsRegister.template.yaml, shown here at file-level granularity as a
+# worked example of the schema. See RightsRegister.template.yaml (unchanged)
+# for this project's actual, honest asset inventory.
+# ===========================================================================
+
+ar_000_status: "N/A — illustrative; see RightsRegister.template.yaml's real ar_000_status: PARTIAL"
+
+assets:
+  - asset_id: "harvey-lab/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts"
+    source: "github.com/harveyai/harvey-labs, commit 845a0884"
+    owner_identity: "Harvey AI"
+    license_or_contract_ref: "MIT license (same grant as the harvey-lab entry in RightsRegister.template.yaml — this is one specific task within that already-covered repo, not a separate rights record)"
+    permitted_uses: [ingest, transform, train, evaluate]
+    derivative_output_ownership: "No additional restriction beyond MIT"
+    checkpoint_finetuning_rights: "Not restricted by MIT"
+    confidentiality_flag: false   # the DOCUMENT CONTENT is marked "PRIVILEGED AND CONFIDENTIAL" as part of the fictional scenario (see DataGovernancePolicy.example.yaml) — but the ASSET ITSELF (the benchmark task file) carries no real confidentiality restriction, since it's a synthetic MIT-licensed test fixture, not an actual client's privileged document
+    privilege_flag: false          # same distinction — fictional in-scenario privilege marking, not a real privilege claim over the file itself
+    expiry_date: null
+    renewal_terms: null
+    deletion_or_publication_obligations: "MIT attribution notice must be preserved"
+    provenance_lineage: "One of 670 tasks / 48,259 criteria in Harvey LAB's contracts + corporate-M&A + large-VDR-diligence slice (product.md §7); task itself has 57 criteria (C-001-C-057) and 18 source documents"
+
+rights_review_queue: []   # nothing novel to route — this asset's rights are already resolved via the harvey-lab MIT grant
+
+known_gaps:
+  - "This file demonstrates the schema at single-task granularity — it does not add new rights coverage beyond what RightsRegister.template.yaml's harvey-lab entry already grants."
+  - "The fictional 'PRIVILEGED AND CONFIDENTIAL' markings inside the document content (see DataGovernancePolicy.example.yaml) are part of the benchmark's realism, not a real confidentiality obligation on this project."

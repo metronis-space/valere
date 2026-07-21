@@ -1,0 +1,289 @@
+schema_version: 1
+manifest_id: harvey-ma-pov-scope-001
+manifest_version: 1
+approval_status: APPROVED
+buyer:
+  buyer_id: harvey-lab-ma-pov
+  legal_name: Harvey LAB M&A POV (Not a Legal Entity)
+  persona: Fictional buyer-side M&A deal team evaluating contract diligence
+  perspective: BUY_SIDE
+pilot_matter_id: harvey-ma-pov-change-control
+workflow:
+  selected: counterparty-paper-review
+  mapping:
+    documents:
+    - counterparty-paper
+    - buyer-playbook
+    deliverables:
+    - memo
+    - tracker
+    - checklist
+    truth_modes:
+    - document-span
+    - buyer-policy
+    - point-in-time-law
+    signoff_actions:
+    - release-work-product
+ma_scope:
+  workstreams:
+  - id: corporate-org
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: contracts-consents
+    status: IN_SCOPE
+    rationale: Synthetic pilot workstream
+    document_families:
+    - material-contracts
+    deliverables:
+    - memo
+    truth_modes:
+    - document-span
+    - buyer-policy
+    signoff_action: release-work-product
+  - id: financing
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: ip
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: privacy
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: employment
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: benefits
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: tax
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: real-estate
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: environmental
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: regulatory
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: litigation
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: antitrust-hsr
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: trade-cfius
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: insurance
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: diligence-synthesis
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: purchase-agreement
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: disclosure-schedules
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: closing
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: post-closing
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: commercial-customers
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  - id: technology-cybersecurity
+    status: OUT_OF_SCOPE
+    rationale: Explicitly excluded from synthetic pilot
+    document_families: []
+    deliverables: []
+    truth_modes: []
+    signoff_action: null
+  transaction:
+    structure: stock-purchase
+    buyer_side: true
+  industry_profile: SaaS target, matching the selected Harvey LAB M&A task
+jurisdiction:
+  governing_law: Delaware state contract law (synthetic test selection)
+  forum: Delaware Court of Chancery (synthetic test selection)
+  entity_law: Delaware General Corporation Law (synthetic test selection)
+  regulatory_overlays:
+  - name: Hart-Scott-Rodino Act
+    applicability: synthetic screen-and-escalate
+    owner: synthetic-legal
+  legal_cutoff_date: '2026-07-01'
+product_mode:
+  deployment_tier: T1
+  real_client_reliance: false
+  target_model:
+    provider: synthetic-provider
+    model_id: synthetic-model-v1
+    revision: synthetic-revision-001
+    access_method: MOCK_ADAPTER
+    access_owner: synthetic-product
+    access_confirmed: true
+    governance_route_id: synthetic-route
+deliverables:
+  schemas:
+  - kind: memo
+    schema_ref: harvey-lab:tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json#coc-analysis-report.docx
+    required_sections:
+    - findings
+    - evidence
+    - escalations
+  success_metrics:
+  - id: harvey-57-criteria-all-pass
+    measure: all 57 Harvey LAB task criteria pass
+    operator: '>='
+    threshold: 1.0
+    owner: synthetic-product
+  kill_criteria:
+  - id: synthetic-severe-false-accept
+    measure: severe false accepts
+    operator: '>'
+    threshold: 0
+    owner: synthetic-legal
+required_asset_uses:
+- asset_id: harvey-lab-ma-change-control-task
+  uses:
+  - ingest
+  - transform
+  - evaluate
+exclusions_register:
+- id: no-autonomous-advice
+  description: No autonomous final legal advice or self-granted authority
+  owner: synthetic-legal
+- id: no-scope-expansion
+  description: No additional workflow, jurisdiction, industry, or workstream without
+    reapproval
+  owner: synthetic-legal
+- id: no-private-rights-assumption
+  description: No private asset use without an affirmative A2 record
+  owner: synthetic-legal
+- id: no-production-by-score
+  description: A benchmark score alone never establishes production readiness
+  owner: synthetic-legal
+high_severity_ambiguities: []
+change_impact_log: []
+approvals:
+- role: commercial-sponsor
+  actor_id: synthetic-sponsor
+  decision: APPROVE
+  approved_at: '2026-07-22T12:00:00+00:00'
+  document_fingerprint: sha256:755e08e674e2d893ec59f8f39469f5d80da30fbfe2c618c224bf217b1822d9f2
+- role: legal-owner
+  actor_id: synthetic-legal
+  decision: APPROVE
+  approved_at: '2026-07-22T12:00:00+00:00'
+  document_fingerprint: sha256:755e08e674e2d893ec59f8f39469f5d80da30fbfe2c618c224bf217b1822d9f2
+- role: product-owner
+  actor_id: synthetic-product
+  decision: APPROVE
+  approved_at: '2026-07-22T12:00:00+00:00'
+  document_fingerprint: sha256:755e08e674e2d893ec59f8f39469f5d80da30fbfe2c618c224bf217b1822d9f2
+test_fixture: true
+pov_source:
+  repository: https://github.com/harveyai/harvey-labs
+  revision: 845a08840869b21a5c11958aae58bf5f00a7b775
+  ma_root: tasks/corporate-ma
+  included_task_paths:
+  - tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts
+  excluded_task_roots: all tasks outside tasks/corporate-ma
+  title: Analyze Change of Control Provisions Across Target's Material Contracts —
+    Due Diligence Report
+  work_type: analyze
+  source_tags:
+  - Mergers & Acquisitions
+  - due-diligence
+  - change-of-control
+  - contract-analysis
+  - SaaS
+  - risk-assessment
+  - virtual-data-room
+  source_deliverable: coc-analysis-report.docx
+  source_criterion_count: 57

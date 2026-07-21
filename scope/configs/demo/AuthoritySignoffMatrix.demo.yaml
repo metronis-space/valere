@@ -1,0 +1,213 @@
+schema_version: 1
+matrix_id: harvey-ma-pov-authority-001
+matrix_version: 1
+authority_owner: synthetic-legal
+approval_status: APPROVED
+actors:
+- actor_id: synthetic-sponsor
+  display_name: Synthetic Commercial Sponsor
+  organization: harvey-lab-ma-pov
+  roles:
+  - commercial-sponsor
+  - customer-owner
+  credentials:
+  - credential_id: synthetic-credential-synthetic-sponsor
+    type: SYNTHETIC_TEST_CREDENTIAL
+    status: ACTIVE
+    verified_by: synthetic-identity-adapter
+    valid_until: '2035-01-01T00:00:00+00:00'
+  delegations:
+  - delegation_id: synthetic-delegation-synthetic-sponsor
+    delegated_by: synthetic-board
+    action_types: &id001
+    - release-work-product
+    - accept-risk
+    - approve-scope
+    - override-control
+    severities:
+    - LOW
+    - MEDIUM
+    - HIGH
+    - CRITICAL
+    deployment_tiers:
+    - T1
+    - T2
+    - T3
+    matter_ids:
+    - harvey-ma-pov-change-control
+    valid_from: '2026-01-01T00:00:00+00:00'
+    valid_until: '2035-01-01T00:00:00+00:00'
+  conflicts:
+    matter_ids: []
+  ethical_walls:
+    denied_matter_ids: []
+- actor_id: synthetic-legal
+  display_name: Synthetic Supervising Lawyer
+  organization: harvey-lab-ma-pov
+  roles:
+  - legal-owner
+  - lawyer-of-record
+  - release-approver
+  - rights-owner
+  - governance-owner
+  credentials:
+  - credential_id: synthetic-credential-synthetic-legal
+    type: SYNTHETIC_TEST_CREDENTIAL
+    status: ACTIVE
+    verified_by: synthetic-identity-adapter
+    valid_until: '2035-01-01T00:00:00+00:00'
+  delegations:
+  - delegation_id: synthetic-delegation-synthetic-legal
+    delegated_by: synthetic-board
+    action_types: *id001
+    severities:
+    - LOW
+    - MEDIUM
+    - HIGH
+    - CRITICAL
+    deployment_tiers:
+    - T1
+    - T2
+    - T3
+    matter_ids:
+    - harvey-ma-pov-change-control
+    valid_from: '2026-01-01T00:00:00+00:00'
+    valid_until: '2035-01-01T00:00:00+00:00'
+  conflicts:
+    matter_ids: []
+  ethical_walls:
+    denied_matter_ids: []
+- actor_id: synthetic-product
+  display_name: Synthetic Product Owner
+  organization: harvey-lab-ma-pov
+  roles:
+  - product-owner
+  - release-approver
+  credentials:
+  - credential_id: synthetic-credential-synthetic-product
+    type: SYNTHETIC_TEST_CREDENTIAL
+    status: ACTIVE
+    verified_by: synthetic-identity-adapter
+    valid_until: '2035-01-01T00:00:00+00:00'
+  delegations:
+  - delegation_id: synthetic-delegation-synthetic-product
+    delegated_by: synthetic-board
+    action_types: *id001
+    severities:
+    - LOW
+    - MEDIUM
+    - HIGH
+    - CRITICAL
+    deployment_tiers:
+    - T1
+    - T2
+    - T3
+    matter_ids:
+    - harvey-ma-pov-change-control
+    valid_from: '2026-01-01T00:00:00+00:00'
+    valid_until: '2035-01-01T00:00:00+00:00'
+  conflicts:
+    matter_ids: []
+  ethical_walls:
+    denied_matter_ids: []
+responsibility:
+  lawyer_of_record_by_matter:
+    harvey-ma-pov-change-control: synthetic-legal
+  customer_owner_by_matter:
+    harvey-ma-pov-change-control: synthetic-sponsor
+  rights_owner: synthetic-legal
+  governance_owner: synthetic-legal
+  release_owner: synthetic-product
+approval_policies:
+- action_type: release-work-product
+  severities:
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+  deployment_tiers:
+  - T1
+  - T2
+  - T3
+  required_roles:
+  - lawyer-of-record
+  - product-owner
+  min_approvers: 2
+  self_approval_allowed: false
+  distinct_actors_required: true
+  lawyer_of_record_required: true
+- action_type: accept-risk
+  severities:
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+  deployment_tiers:
+  - T1
+  - T2
+  - T3
+  required_roles:
+  - lawyer-of-record
+  - customer-owner
+  min_approvers: 2
+  self_approval_allowed: false
+  distinct_actors_required: true
+  lawyer_of_record_required: true
+- action_type: approve-scope
+  severities:
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+  deployment_tiers:
+  - T1
+  - T2
+  - T3
+  required_roles:
+  - commercial-sponsor
+  - legal-owner
+  - product-owner
+  min_approvers: 3
+  self_approval_allowed: false
+  distinct_actors_required: true
+  lawyer_of_record_required: false
+- action_type: override-control
+  severities:
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+  deployment_tiers:
+  - T1
+  - T2
+  - T3
+  required_roles:
+  - lawyer-of-record
+  - product-owner
+  min_approvers: 2
+  self_approval_allowed: false
+  distinct_actors_required: true
+  lawyer_of_record_required: true
+release_signoff_workflow:
+  stages:
+  - request
+  - conflict-check
+  - legal-review
+  - product-review
+  - e-sign
+  - release
+  e_signature_provider: SYNTHETIC_E_SIGNATURE_ADAPTER
+audit_logs:
+  client_decisions:
+    format: HASH_CHAINED_JSONL
+    append_only: true
+    path: var/audit/client-decisions.jsonl
+  exceptions_overrides:
+    format: HASH_CHAINED_JSONL
+    append_only: true
+    path: var/audit/exceptions-overrides.jsonl
+approval:
+  actor_id: synthetic-legal
+  role: legal-owner
+  approved_at: '2026-07-22T12:00:00+00:00'
+test_fixture: true

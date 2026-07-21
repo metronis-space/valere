@@ -1,0 +1,107 @@
+# ScopeManifest v1 template — A1
+#
+# This is the production contract shape consumed by `python -m scope`.
+# TBD values are intentional external decisions; the compiler rejects them.
+# The 22-row matrix is closed: scope expansion requires a new version, impact
+# report, and fresh commercial/legal/product approvals.
+
+schema_version: 1
+manifest_id: TBD
+manifest_version: 1
+approval_status: DRAFT
+
+buyer:
+  buyer_id: TBD
+  legal_name: TBD
+  persona: TBD
+  perspective: BUY_SIDE
+
+pilot_matter_id: TBD
+
+workflow:
+  selected: TBD
+  # Copy the mapping for exactly one workflow from scope/catalog.py. The
+  # compiler checks that documents, deliverables, truth modes, and signoff are
+  # complete for the selected workflow.
+  mapping:
+    documents: []
+    deliverables: []
+    truth_modes: []
+    signoff_actions: []
+
+ma_scope:
+  # Source-note: product.md claims 22 and elsewhere claims 21 while enumerating
+  # 20. The first 20 below preserve that enumeration; commercial/customers and
+  # technology/cybersecurity are separately controllable dimensions already
+  # implied by the corpus. Both default OUT_OF_SCOPE and cannot be activated
+  # without approval.
+  workstreams:
+    - {id: corporate-org, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: contracts-consents, status: TBD, rationale: TBD, document_families: [], deliverables: [], truth_modes: [], signoff_action: TBD}
+    - {id: financing, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: ip, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: privacy, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: employment, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: benefits, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: tax, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: real-estate, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: environmental, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: regulatory, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: litigation, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: antitrust-hsr, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: trade-cfius, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: insurance, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: diligence-synthesis, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: purchase-agreement, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: disclosure-schedules, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: closing, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: post-closing, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: commercial-customers, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+    - {id: technology-cybersecurity, status: OUT_OF_SCOPE, rationale: "Not selected for the first pilot", document_families: [], deliverables: [], truth_modes: [], signoff_action: null}
+  transaction:
+    structure: TBD
+    buyer_side: true
+  industry_profile: TBD
+
+jurisdiction:
+  governing_law: TBD
+  forum: TBD
+  entity_law: TBD
+  regulatory_overlays: []
+  legal_cutoff_date: TBD
+
+product_mode:
+  deployment_tier: T1
+  real_client_reliance: false
+  target_model:
+    provider: TBD
+    model_id: TBD
+    revision: TBD
+    access_method: TBD
+    access_owner: TBD
+    access_confirmed: false
+    governance_route_id: TBD
+
+deliverables:
+  schemas:
+    - {kind: memo, schema_ref: TBD, required_sections: []}
+  success_metrics:
+    - {id: severity-weighted-all-pass, measure: "severity-weighted all-pass rate", operator: ">=", threshold: TBD, owner: TBD}
+  kill_criteria:
+    - {id: severe-false-accepts, measure: "severe false accepts", operator: ">", threshold: 0, owner: TBD}
+
+required_asset_uses: []
+
+exclusions_register:
+  - {id: no-autonomous-advice, description: "No autonomous final legal advice or self-granted authority", owner: TBD}
+  - {id: no-scope-expansion, description: "No additional workflow, jurisdiction, industry, or workstream without reapproval", owner: TBD}
+  - {id: no-private-rights-assumption, description: "No private asset use without an affirmative A2 record", owner: TBD}
+  - {id: no-production-by-score, description: "A benchmark score alone never establishes production readiness", owner: TBD}
+
+high_severity_ambiguities:
+  - "Named buyer, workflow, jurisdiction, target model, rights, owners, and thresholds are unresolved."
+change_impact_log: []
+
+# Each APPROVE record must cover `approval_fingerprint(manifest)` and use three
+# distinct actors registered in AuthoritySignoffMatrix.
+approvals: []

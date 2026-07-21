@@ -1,0 +1,90 @@
+# AuthoritySignoffMatrix v1 template — A4
+#
+# No actor can be invented by software. Populate this file only with real,
+# credential-verified, delegated people supplied by the buyer/firm.
+
+schema_version: 1
+matrix_id: valere-authority
+matrix_version: 1
+authority_owner: TBD
+approval_status: DRAFT
+
+actors: []
+# Actor shape:
+# - actor_id: real-directory-id
+#   display_name: Real Person
+#   organization: buyer-or-firm-id
+#   roles: [lawyer-of-record, legal-owner]
+#   credentials:
+#     - {credential_id: bar-or-employment-record, type: BAR_ADMISSION, status: ACTIVE, verified_by: credentialing-owner, valid_until: "2027-01-01T00:00:00+00:00"}
+#   delegations:
+#     - delegation_id: delegation-001
+#       delegated_by: responsible-principal-id
+#       action_types: [release-work-product]
+#       severities: [LOW, MEDIUM, HIGH, CRITICAL]
+#       deployment_tiers: [T1]
+#       matter_ids: [pilot-matter-id]
+#       valid_from: "2026-01-01T00:00:00+00:00"
+#       valid_until: "2027-01-01T00:00:00+00:00"
+#   conflicts: {matter_ids: []}
+#   ethical_walls: {denied_matter_ids: []}
+
+responsibility:
+  lawyer_of_record_by_matter: {}
+  customer_owner_by_matter: {}
+  rights_owner: TBD
+  governance_owner: TBD
+  release_owner: TBD
+
+approval_policies:
+  - action_type: release-work-product
+    severities: [LOW, MEDIUM, HIGH, CRITICAL]
+    deployment_tiers: [T1, T2, T3]
+    required_roles: [lawyer-of-record, product-owner]
+    min_approvers: 2
+    self_approval_allowed: false
+    distinct_actors_required: true
+    lawyer_of_record_required: true
+  - action_type: accept-risk
+    severities: [LOW, MEDIUM, HIGH, CRITICAL]
+    deployment_tiers: [T1, T2, T3]
+    required_roles: [lawyer-of-record, customer-owner]
+    min_approvers: 2
+    self_approval_allowed: false
+    distinct_actors_required: true
+    lawyer_of_record_required: true
+  - action_type: approve-scope
+    severities: [LOW, MEDIUM, HIGH, CRITICAL]
+    deployment_tiers: [T1, T2, T3]
+    required_roles: [commercial-sponsor, legal-owner, product-owner]
+    min_approvers: 3
+    self_approval_allowed: false
+    distinct_actors_required: true
+    lawyer_of_record_required: false
+  - action_type: override-control
+    severities: [LOW, MEDIUM, HIGH, CRITICAL]
+    deployment_tiers: [T1, T2, T3]
+    required_roles: [lawyer-of-record, product-owner]
+    min_approvers: 2
+    self_approval_allowed: false
+    distinct_actors_required: true
+    lawyer_of_record_required: true
+
+release_signoff_workflow:
+  stages: [request, conflict-check, legal-review, product-review, e-sign, release]
+  e_signature_provider: TBD
+
+audit_logs:
+  client_decisions:
+    format: HASH_CHAINED_JSONL
+    append_only: true
+    path: var/audit/client-decisions.jsonl
+  exceptions_overrides:
+    format: HASH_CHAINED_JSONL
+    append_only: true
+    path: var/audit/exceptions-overrides.jsonl
+
+approval:
+  actor_id: TBD
+  role: authority-owner
+  approved_at: TBD

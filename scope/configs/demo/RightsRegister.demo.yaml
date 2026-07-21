@@ -1,0 +1,96 @@
+schema_version: 1
+register_id: harvey-ma-pov-rights-001
+register_version: 1
+rights_owner: synthetic-legal
+assets:
+- asset_id: harvey-lab
+  asset_type: BENCHMARK_DATASET
+  lifecycle: ACTIVE
+  source:
+    uri: https://github.com/harveyai/harvey-labs
+    content_fingerprint: git:845a08840869b21a5c11958aae58bf5f00a7b775
+    acquired_at: '2026-07-21'
+  owner:
+    owner_id: harvey-ai
+    legal_name: Harvey AI
+    rights_contact: public-license
+  grant:
+    kind: LICENSE
+    reference: MIT
+    reviewed_by: synthetic-legal
+    reviewed_at: '2026-07-22T12:00:00+00:00'
+    expiry_date: null
+    permissions:
+      ingest: ALLOW
+      transform: ALLOW
+      evaluate: ALLOW
+      train: ALLOW
+      share: ALLOW
+      publish: ALLOW
+    derivative_outputs:
+      creation_allowed: true
+      ownership: PROJECT_SUBJECT_TO_LICENSE
+      release_allowed: true
+    checkpoints:
+      finetune_allowed: true
+      ownership: SUBJECT_TO_MODEL_AND_LICENSE_TERMS
+      distribution_allowed: false
+  classifications:
+    confidentiality: PUBLIC
+    privilege: NONE
+    personal_data: NONE
+  obligations:
+    attribution: PRESERVE_MIT_NOTICE
+    deletion: NONE
+    publication: PRESERVE_MIT_NOTICE
+    renewal: NONE
+  lineage:
+    parent_asset_ids: []
+    transformation: SOURCE
+- asset_id: harvey-lab-ma-change-control-task
+  asset_type: BENCHMARK_TASK_SLICE
+  lifecycle: ACTIVE
+  source:
+    uri: https://github.com/harveyai/harvey-labs/tree/845a08840869b21a5c11958aae58bf5f00a7b775/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts
+    content_fingerprint: git:845a08840869b21a5c11958aae58bf5f00a7b775#tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts
+    acquired_at: '2026-07-22'
+  owner:
+    owner_id: harvey-ai
+    legal_name: Harvey AI
+    rights_contact: public-license
+  grant:
+    kind: LICENSE
+    reference: MIT
+    reviewed_by: synthetic-legal
+    reviewed_at: '2026-07-22T12:00:00+00:00'
+    expiry_date: null
+    permissions:
+      ingest: ALLOW
+      transform: ALLOW
+      evaluate: ALLOW
+      train: ALLOW
+      share: ALLOW
+      publish: ALLOW
+    derivative_outputs:
+      creation_allowed: true
+      ownership: PROJECT_SUBJECT_TO_LICENSE
+      release_allowed: true
+    checkpoints:
+      finetune_allowed: true
+      ownership: SUBJECT_TO_MODEL_AND_LICENSE_TERMS
+      distribution_allowed: false
+  classifications:
+    confidentiality: PUBLIC
+    privilege: NONE
+    personal_data: NONE
+  obligations:
+    attribution: PRESERVE_MIT_NOTICE
+    deletion: NONE
+    publication: PRESERVE_MIT_NOTICE
+    renewal: NONE
+  lineage:
+    parent_asset_ids:
+    - harvey-lab
+    transformation: FILTER_PATH:tasks/corporate-ma; INCLUDE_ONE_TASK:tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts
+rights_review_queue: []
+test_fixture: true

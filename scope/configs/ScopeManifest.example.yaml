@@ -1,0 +1,64 @@
+# ===========================================================================
+# TEST FIXTURE — NOT A REAL DECISION — for demo/testing purposes only.
+#
+# Sourced from a real, existing, MIT-licensed public benchmark task, not
+# invented from scratch:
+#   Repo:   github.com/harveyai/harvey-labs (MIT license, commit 845a0884)
+#   Task:   tasks/corporate-ma/analyze-change-of-control-provisions-across-
+#           targets-material-contracts/{task.json, documents/}
+#   Fetched: via `gh api`, this session.
+#
+# "Ridgeline Capital Partners," "Aldersgate Software Solutions," and every
+# named individual below are FICTIONAL characters written into that benchmark
+# task for model-evaluation purposes. They are not this project's real buyer,
+# jurisdiction, or accountable owner. This file does NOT satisfy AR-000 or any
+# Phase 0 exit criteria — see ScopeManifest.template.yaml (unchanged, still
+# TBD/UNRESOLVED) for this project's actual, honest state.
+# ===========================================================================
+
+manifest_version: "EXAMPLE"
+approval_status: "N/A — fictional benchmark scenario, not submitted for approval"
+
+buyer_persona: "Ridgeline Capital Partners LLC (\"Ridgeline\") — Delaware LLC, private-equity sponsor. Investing via Fund VI ($2.4B committed capital; mid-market tech focus, EV $200M-$750M target range). Boston, MA."
+
+contract_workflow:
+  candidates: [counterparty-paper review, first draft, first-turn redline, playbook escalation, subsequent-turn redline, term negotiation]
+  selected: "diligence/review — buy-side contract review + issue-spotting report (matches the real task's work_type: \"analyze\", deliverable: coc-analysis-report.docx)"
+
+ma_due_diligence_scope:
+  workstreams: [contracts/consents, financing, IP, employment, regulatory]
+  # contracts/consents: change-of-control across 8 material contracts (primary workstream)
+  # financing: FCB credit facility mandatory acceleration + make-whole premium
+  # IP: Pinnacle exclusive tech license (patents US 10,892,441 / 11,234,567 / 11,456,789)
+  # employment: Webb CoC severance ($35.4M potential payout) + retention/280G
+  # regulatory: HSR filing applicability flagged as open question in the source memo
+  transaction_structure: "Stock purchase agreement — 100% equity acquisition (Buyer acquires all outstanding shares)"
+  industry_profile: "B2B SaaS — cloud-based supply chain optimization software"
+
+jurisdiction:
+  entity_law: "Delaware (both Buyer and Target are Delaware entities — Ridgeline is a Delaware LLC, Aldersgate is a Delaware C-corp — stated explicitly in the source memo)"
+  governing_law: "Not explicitly stated in the reviewed deal memo (that clause lives in the actual SPA, not the deal-overview memo) — Delaware is likely given both parties' formation state and market convention, but this is an inference, not a confirmed fact. Do not treat as decided."
+  forum: "Not stated in source material"
+  regulatory_overlay: "Hart-Scott-Rodino (HSR) Antitrust Improvements Act filing — flagged in the source memo as an open question for outside counsel to confirm, not yet resolved even within the fictional scenario"
+  legal_cutoff_date: "Memo dated 2025-07-14; expected signing 2025-08-22; expected closing 2025-10-15; drop-dead date 2025-12-31 (all fictional dates internal to the benchmark task)"
+
+product_mode:
+  deployment_tier: T1   # Synthetic research factory — this whole example is a public benchmark task, exactly T1-appropriate
+  target_model: "N/A — the source benchmark does not prescribe which model to evaluate; this remains an open decision for this project regardless of this example"
+  model_access_profile: "N/A"
+
+deliverables:
+  deliverable_schema: "coc-analysis-report.docx — a due-diligence memo-style deliverable (per build-map.md D1's memo/redline/tracker/checklist/schedule/calculation catalog, this is the 'memo' type)"
+  success_metrics: "57 atomic pass/fail criteria (C-001 through C-057) in the real task.json, each independently gradable — a concrete, real example of D3's 'atomic criterion' design, not this project's own criteria"
+  kill_criteria: "N/A — no real buyer, so no real commercial kill threshold; the fictional scenario's own stakes (drop-dead date 2025-12-31, exclusivity expiring 2025-09-12) illustrate the kind of deadline-driven kill criteria a real matter would carry"
+
+exclusions_register:
+  - "All of law, every U.S. jurisdiction, or every regulated industry in a first release"
+  - "Autonomous final legal advice, or software granting itself authority to waive, sign, file, settle, or accept risk"
+  - "A universal answer to commercial reasonableness, strategy, or unsettled law"
+  - "A universal Boolean 'good law' oracle or a zero-error grader"
+  - "Reuse rights to private matters/playbooks/model outputs merely because they are technically ingestible"
+  - "Production readiness merely because tasks run or a benchmark score rises"
+
+change_impact_log:
+  - "EXAMPLE only — no real manifest version history exists yet."

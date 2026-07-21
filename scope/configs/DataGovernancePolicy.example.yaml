@@ -1,0 +1,31 @@
+# ===========================================================================
+# TEST FIXTURE — NOT A REAL DECISION — for demo/testing purposes only.
+#
+# Illustrates the schema using the real markings found INSIDE the fetched
+# harvey-labs benchmark document (deal-overview-memo.docx) — a good worked
+# example of privilege/confidentiality tagging, precisely because the
+# benchmark authors wrote realistic markings into their fictional document.
+# See DataGovernancePolicy.template.yaml (unchanged) for this project's
+# actual, honest governance policy state.
+# ===========================================================================
+
+tier_context: T1
+
+data_classification_scheme: "Illustrative: the source document is headed 'CONFIDENTIAL — DEAL OVERVIEW MEMORANDUM' and states it is 'PRIVILEGED AND CONFIDENTIAL — FOR INTERNAL USE ONLY... protected by the attorney-client privilege and the work product doctrine.' This is exactly the kind of classification/label A3's 'data classifier, matter/tenant labels, privilege/work-product tags' build item needs to detect and enforce automatically — but here it's fictional scenario content, not a real client document to protect."
+matter_tenant_labels: "Illustrative: 'Project Aldersgate' is the matter label used throughout the source memo — a realistic example of matter-level labeling, not a real active matter for this project"
+privilege_work_product_tags: "Illustrative: the source memo explicitly invokes attorney-client privilege and work-product doctrine, and restricts distribution to a named list (David Thornton, deal team, Board) — a real example of the tagging granularity A3 needs, sourced from fictional benchmark content"
+
+pii_detection_policy: "Illustrative: one of the eight material contracts in this scenario (the Meridian Health Solutions Data Processing Agreement) explicitly 'governs the processing of protected health information (PHI) under HIPAA' — a real example of the kind of PII/PHI flag A3's detector must catch, again fictional-scenario content"
+residency_policy: "N/A — not addressed in the source memo; still an open infra decision for this project regardless"
+encryption_key_policy: "N/A — not addressed in the source memo; still an open decision for this project"
+
+no_provider_training_routing: "N/A — this specific document is MIT-licensed and training-permitted (see RightsRegister.example.yaml); does not resolve the policy for any future real, non-MIT confidential data"
+retention_deletion_schedule: "N/A — not addressed by the source memo"
+
+legal_hold_policy: "N/A — not addressed by the source memo"
+dlp_export_control_policy: "N/A — not addressed by the source memo"
+incident_breach_workflow: "N/A — not addressed by the source memo"
+
+known_gaps:
+  - "This file shows what real classification/privilege/PII markings look like when present in a document — it does not resolve any of this project's actual T2/T3 governance decisions (residency, encryption, retention, DLP), which remain genuinely undecided."
+  - "Fictional 'PRIVILEGED AND CONFIDENTIAL' markings belong to the benchmark scenario, not to this project or repo."

@@ -31,3 +31,9 @@ directory without adding YAML outside `scope/configs/`:
 ```bash
 python3 -m truth demo-generate --out-dir scope/configs/demo
 ```
+
+Phase 2 then writes its test-only canonical-state exit artifact alongside them:
+
+```bash
+python3 -m matter demo-generate
+```

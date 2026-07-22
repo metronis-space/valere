@@ -4,10 +4,11 @@ Valare is an executable legal-AI control plane for defining scope, checking
 data and content rights, enforcing governance controls, and requiring human
 authority before work advances to later phases.
 
-The current implementation completes the Phase 0 engineering controls in
-[`scope/`](scope/) and the Phase 1 truth-policy kernel in [`truth/`](truth/).
-It includes a fictional M&A design-partner bundle for testing the POV without
-representing that a real buyer or production approvals exist.
+The current implementation completes the Phase 0 controls in [`scope/`](scope/),
+the Phase 1 truth-policy kernel in [`truth/`](truth/), and the Phase 2 canonical
+state/criterion proof in [`matter/`](matter/). It includes a fictional M&A
+bundle for testing the POV without representing that a real buyer or production
+approvals exist.
 
 ## Requirements
 
@@ -27,9 +28,10 @@ Confirm the command-line interface is available:
 ```bash
 uv run valere-boundary --help
 uv run valere-truth --help
+uv run valere-matter --help
 ```
 
-## Verify Phase 0
+## Verify Phases 0–2
 
 Run the complete test suite:
 
@@ -42,9 +44,10 @@ Generate and validate the fictional M&A POV bundle:
 ```bash
 uv run valere-boundary demo-generate --out-dir scope/configs/demo
 uv run valere-truth demo-generate --out-dir scope/configs/demo
+uv run valere-matter demo-generate
 ```
 
-The generated Phase 0 and Phase 1 exit artifacts under `scope/configs/demo/`
+The generated Phase 0–2 exit artifacts under `scope/configs/demo/`
 must report `TEST_READY`. That status permits POV development only. Production
 remains blocked until authorized people replace the `TBD`/`DRAFT` values in the
 four `scope/configs/*.template.yaml` contracts and supply real Phase 1 sources,
@@ -65,7 +68,9 @@ governance, impact-analysis, and authorization commands.
 
 - `scope/` — Phase 0 boundary implementation and configuration
 - `truth/` — Phase 1 truth and policy kernel
+- `matter/` — Phase 2 canonical matter graph, causal scenarios, and exit compiler
+- `tasks/compiler/` — Phase 2 D3 atomic criterion harness
 - `utils/` — dependency-neutral infrastructure and shared POV identity
-- `tests/` — executable Phase 0/1 controls and negative tests
-- `matter/`, `tasks/`, `datasets/` — downstream compiler scaffolds
+- `tests/` — executable Phase 0–2 controls and negative tests
+- `datasets/` — downstream dataset/split scaffold
 - `harness/`, `evaluation/`, `training/`, `registry/` — runtime and release scaffolds

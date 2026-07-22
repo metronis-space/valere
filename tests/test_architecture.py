@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def imported_roots(package: str) -> set[str]:
     roots: set[str] = set()
-    for path in (ROOT / package).glob("*.py"):
+    for path in (ROOT / package).rglob("*.py"):
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
         for node in ast.walk(tree):
             if isinstance(node, ast.Import):
@@ -38,6 +38,11 @@ class ArchitectureTests(unittest.TestCase):
         roots = imported_roots("utils")
         self.assertNotIn("scope", roots)
         self.assertNotIn("truth", roots)
+
+    def test_phase2_dependency_direction_is_not_circular(self) -> None:
+        self.assertNotIn("matter", imported_roots("scope") | imported_roots("truth"))
+        self.assertNotIn("scope", imported_roots("matter"))
+        self.assertFalse({"matter", "scope", "truth"} & imported_roots("tasks"))
 
     def test_error_types_live_in_utils_and_remain_publicly_exported(self) -> None:
         self.assertFalse((ROOT / "scope" / "errors.py").exists())

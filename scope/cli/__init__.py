@@ -12,13 +12,13 @@ from utils.artifacts import atomic_write_json
 from utils.cli import print_json
 from utils.errors import BoundaryError
 
-from .authority import AuthorityEngine
-from .compiler import Phase0Compiler
-from .demo import build_demo_bundle, write_demo_bundle
-from .governance import GovernanceEngine
-from .io import load_document
-from .manifest import change_impact
-from .rights import RightsRegistry
+from ..authority import AuthorityEngine
+from ..compiler import Phase0Compiler
+from ..demo import build_demo_bundle, write_demo_bundle
+from ..governance import GovernanceEngine
+from ..io import load_document
+from ..manifest import change_impact
+from ..rights import RightsRegistry
 
 
 def _phase_documents(args: argparse.Namespace) -> Sequence[Dict[str, Any]]:

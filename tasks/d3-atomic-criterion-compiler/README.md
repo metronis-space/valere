@@ -2,14 +2,14 @@
 
 Turns matter state + rules into gradable, leak-free tasks. **Two-stage build:** harness proof against hidden state alone (Phase 2, one issue family, no documents), then full build across the whole D1 catalog (Phase 4).
 
-Plane: D (Task, rubric, dataset factory) · Phases: 2 — Canonical-state compiler proof (harness, `BLOCKED`) and 4 — Executable task/runtime proof (full build, `BLOCKED`)
+Plane: D (Task, rubric, dataset factory) · Phases: 2 — Canonical-state compiler proof (harness, `POV_COMPLETE`) and 4 — Executable task/runtime proof (full build, `BLOCKED`)
 
 ## Build — Phase 2 (harness proof only)
 
-- [ ] Criterion grammar and truth-source/verification-mode assignment
-- [ ] Prove issue-identification/exact-span checks and operative-fact extraction compile directly from C1/C2 state
-- [ ] Prove trigger/application/consequence/calculation/severity/recommendation compile from B4 rules + state
-- [ ] Generate positive/negative/borderline examples and expected-delta counterfactual tests for one issue family, end to end
+- [x] Criterion grammar and truth-source/verification-mode assignment
+- [x] Prove issue-identification/exact-span checks and operative-fact extraction compile directly from C1/C2 state
+- [x] Prove trigger/application/consequence/calculation/severity/recommendation compile from B4 rules + state
+- [x] Generate positive/negative/borderline examples and expected-delta counterfactual tests for one issue family, end to end
 
 **Depends on:** B4, C1/C2.
 **Posture:** Build the compiler/registry; seed from public rubrics (Harvey LAB); models only draft candidate paraphrases.

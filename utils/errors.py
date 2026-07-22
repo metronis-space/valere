@@ -18,6 +18,10 @@ class TruthError(ValereError):
     """Raised when Phase 1 cannot produce a trustworthy result."""
 
 
+class MatterError(ValereError):
+    """Raised when Phase 2 canonical state or compiled criteria are invalid."""
+
+
 class DocumentError(ValereError):
     """Raised when a configuration or artifact cannot be loaded safely."""
 
@@ -83,6 +87,7 @@ __all__ = [
     "BoundaryError",
     "BoundaryValidationReport",
     "DocumentError",
+    "MatterError",
     "TruthError",
     "ValereError",
     "ValidationIssue",

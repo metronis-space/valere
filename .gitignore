@@ -29,7 +29,7 @@ dist/
 # Locally compiled production artifacts
 /phase-0-exit.json
 
-# Generated Phase 0 POV/demo bundle - regenerate with `python3 -m scope demo-generate`
+# Generated Phase 0-2 POV bundle - regenerate with the three `demo-generate` CLIs
 /scope/configs/demo/
 
 # Local assistant state is never published.

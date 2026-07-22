@@ -1,6 +1,6 @@
 # tasks/ — D1 catalog + D2 TaskManifest + D3 CriterionBundle
 
-Forked from harvey-labs' `tasks/<practice-area>/<task-slug>/{task.json, documents/}` directory convention. Seeded from their 670/48,259 contracts+M&A task/criterion slice; extended with generated tasks written by `../matter/render_targets/`. Status: `BLOCKED`.
+Forked from harvey-labs' `tasks/<practice-area>/<task-slug>/{task.json, documents/}` directory convention. Seeded from their 670/48,259 contracts+M&A task/criterion slice; extended with generated tasks written by `../matter/render_targets/`. D3's Phase 2 harness is `POV_COMPLETE`; the full Phase 4 task build remains `BLOCKED`.
 
 Under the repository fork layout, D1/D2/D3 are **not** separate top-level directories — they map onto this one, forked, tree:
 

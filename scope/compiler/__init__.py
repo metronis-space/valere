@@ -9,10 +9,10 @@ from typing import Any, Dict, Optional
 from utils.artifacts import fingerprint, set_fingerprint
 from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport
 
-from .authority import high_severity_ownership_report, validate_authority_matrix
-from .governance import control_coverage_report, validate_governance_policy
-from .manifest import approval_fingerprint, compile_manifest, validate_manifest
-from .rights import ar_000_report, validate_rights_register
+from ..authority import high_severity_ownership_report, validate_authority_matrix
+from ..governance import control_coverage_report, validate_governance_policy
+from ..manifest import approval_fingerprint, compile_manifest, validate_manifest
+from ..rights import ar_000_report, validate_rights_register
 
 
 class Phase0Compiler:

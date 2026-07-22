@@ -5,8 +5,8 @@ bounded M&A proof of value. It compiles point-in-time sources, proposition
 support, a typed ontology, and source-owned rules into one hashed Phase 1 exit
 artifact.
 
-Current POV status: **`TEST_READY`**. Phase 2 POV engineering is unblocked by
-`scope/configs/demo/phase-1-test-exit.json`. Production remains blocked because
+Current POV status: **`TEST_READY`**. Phase 2 consumes
+`scope/configs/demo/phase-1-test-exit.json` and is POV-complete. Production remains blocked because
 the bundled sources, buyer policy, owners, credentials, and AR-001 observations
 are fictional test fixtures.
 

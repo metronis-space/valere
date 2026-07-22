@@ -12,9 +12,10 @@ dependencies = ["PyYAML>=6.0,<7"]
 [project.scripts]
 valere-boundary = "scope.cli:main"
 valere-truth = "truth.cli:main"
+valere-matter = "matter.cli:main"
 
 [tool.setuptools]
-packages = ["scope", "truth", "utils"]
+packages = ["matter", "matter.cli", "matter.compiler", "scope", "scope.cli", "scope.compiler", "scope.configs", "tasks", "tasks.compiler", "truth", "utils"]
 
 [tool.setuptools.package-data]
 scope = ["configs/*.md", "configs/*.yaml"]

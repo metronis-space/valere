@@ -9,9 +9,9 @@ from typing import Any, Dict, List, Optional, Sequence
 
 from utils.catalogs import DEPLOYMENT_TIERS, REQUIRED_GOVERNANCE_CONTROLS
 from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport
+from utils.values import duplicates
 
 from .common import (
-    duplicates,
     parse_datetime,
     require_list,
     require_mapping,

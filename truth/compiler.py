@@ -4,21 +4,17 @@ from __future__ import annotations
 
 import copy
 from datetime import date, datetime, timezone
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Set
+from typing import Any, Dict, List, Mapping, Optional, Set
 
 from utils.artifacts import fingerprint, set_fingerprint, verify_fingerprint
 from utils.errors import TruthError
 from utils.pov import HARVEY_COMMIT, HARVEY_POV_TASK, POV_WORKFLOW, POV_WORKSTREAM
 
 from .authority import AuthorityGraph, InMemoryCitator, classification_metrics
-from .common import iso_date, iso_datetime, require
+from .common import iso_date, iso_datetime
 from .ontology import OntologyRegistry
 from .rules import RuleCompiler, ar_001_effort_experiment, counterfactual_check, held_out_coverage
 from .sources import AuthoritySnapshotBuilder
-
-
-def _phase0_integrity(phase0: Mapping[str, Any]) -> bool:
-    return verify_fingerprint(dict(phase0))
 
 
 def _authorized_rule_owners(authority: Mapping[str, Any], as_of: date) -> Set[str]:
@@ -51,7 +47,7 @@ class Phase1Compiler:
 
     def _validate_phase0(self, phase0: Mapping[str, Any], authority_contract: Mapping[str, Any], fixture: bool) -> List[str]:
         issues = []
-        if not _phase0_integrity(phase0):
+        if not verify_fingerprint(dict(phase0)):
             issues.append("Phase 0 artifact fingerprint is invalid")
         expected_status = "TEST_READY" if fixture else "READY"
         if phase0.get("status") != expected_status:

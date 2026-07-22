@@ -15,8 +15,9 @@ from utils.catalogs import (
     WORKFLOW_CATALOG,
 )
 from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport
+from utils.values import duplicates
+
 from .common import (
-    duplicates,
     parse_date,
     parse_datetime,
     require_list,
@@ -28,17 +29,11 @@ from .common import (
 APPROVAL_ROLES = {"commercial-sponsor", "legal-owner", "product-owner"}
 
 
-def approval_payload(manifest: Dict[str, Any]) -> Dict[str, Any]:
-    """Return the exact content covered by manifest approval signatures."""
-
+def approval_fingerprint(manifest: Dict[str, Any]) -> str:
     payload = copy.deepcopy(manifest)
     payload.pop("approvals", None)
     payload.pop("change_impact_log", None)
-    return payload
-
-
-def approval_fingerprint(manifest: Dict[str, Any]) -> str:
-    return fingerprint(approval_payload(manifest))
+    return fingerprint(payload)
 
 
 def _validate_workflow(report: ValidationReport, manifest: Dict[str, Any]) -> None:

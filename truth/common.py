@@ -5,10 +5,8 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import Any, Dict, Iterable, Optional, Set
 
-from utils.artifacts import canonical_json, fingerprint
-from utils.artifacts import without_fingerprint as strip_fingerprint_fields
 from utils.errors import TruthError
-from utils.values import coerce_date, coerce_datetime, deep_get, require_concrete, unique_index
+from utils.values import coerce_date, coerce_datetime, require_concrete, unique_index
 
 
 def require(value: Any, path: str) -> Any:
@@ -40,10 +38,6 @@ def unique_ids(items: Iterable[Dict[str, Any]], key: str, path: str) -> Dict[str
     return unique_index(items, key, path, TruthError)
 
 
-def without_fingerprint(value: Dict[str, Any]) -> Dict[str, Any]:
-    return strip_fingerprint_fields(value, ("artifact_fingerprint", "fingerprint", "snapshot_id"))
-
-
 def referenced_facts(expression: Any) -> Set[str]:
     if not isinstance(expression, dict):
         return set()
@@ -59,14 +53,10 @@ def referenced_facts(expression: Any) -> Set[str]:
 
 
 __all__ = [
-    "canonical_json",
-    "deep_get",
-    "fingerprint",
     "iso_date",
     "iso_datetime",
     "optional_date",
     "referenced_facts",
     "require",
     "unique_ids",
-    "without_fingerprint",
 ]

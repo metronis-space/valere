@@ -6,6 +6,7 @@ import copy
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from utils.artifacts import atomic_write_yaml
 from utils.catalogs import REQUIRED_GOVERNANCE_CONTROLS, RIGHTS_USES, WORKFLOW_CATALOG
 from utils.pov import (
     HARVEY_COMMIT,
@@ -24,7 +25,7 @@ from utils.pov import (
     POV_WORKSTREAM,
 )
 
-from .io import atomic_write_yaml, load_document
+from .io import load_document
 from .manifest import approval_fingerprint
 
 

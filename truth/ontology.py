@@ -4,8 +4,7 @@ from __future__ import annotations
 
 import copy
 import json
-from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Set, Tuple
+from typing import Any, Dict, Mapping, Optional, Set, Tuple
 
 from utils.artifacts import canonical_json, fingerprint, set_fingerprint
 from utils.catalogs import MA_WORKSTREAM_CATALOG

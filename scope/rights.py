@@ -8,9 +8,9 @@ from typing import Any, Dict, List, Optional, Set
 
 from utils.catalogs import RIGHTS_DECISIONS, RIGHTS_USES
 from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport
+from utils.values import duplicates
 
 from .common import (
-    duplicates,
     parse_date,
     parse_datetime,
     require_list,

@@ -8,6 +8,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Dict, Optional, Sequence
 
+from utils.artifacts import atomic_write_json
 from utils.cli import print_json
 from utils.errors import BoundaryError
 
@@ -15,7 +16,7 @@ from .authority import AuthorityEngine
 from .compiler import Phase0Compiler
 from .demo import build_demo_bundle, write_demo_bundle
 from .governance import GovernanceEngine
-from .io import atomic_write_json, load_document
+from .io import load_document
 from .manifest import change_impact
 from .rights import RightsRegistry
 

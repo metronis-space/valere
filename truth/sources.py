@@ -5,7 +5,6 @@ from __future__ import annotations
 import copy
 import html
 import re
-from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
@@ -16,7 +15,7 @@ from urllib.request import Request, urlopen
 from utils.artifacts import atomic_write_json, fingerprint, set_fingerprint, verify_fingerprint
 from utils.errors import TruthError
 
-from .common import iso_date, iso_datetime, optional_date, require, unique_ids, without_fingerprint
+from .common import iso_date, iso_datetime, optional_date, require, unique_ids
 
 
 SOURCE_TYPES = {"OFFICIAL", "LICENSED", "PUBLIC_BENCHMARK", "SYNTHETIC"}
@@ -31,13 +30,6 @@ AUTHORITY_KINDS = {
 }
 COVERAGE_STATUSES = {"COVERED", "UNAVAILABLE", "OUT_OF_SCOPE"}
 TEXT_MEDIA_TYPES = {"text/plain", "text/html", "application/xhtml+xml"}
-
-
-class SourceConnector(Protocol):
-    """Acquires a source record without deciding its legal effect."""
-
-    def acquire(self, source_id: str) -> Dict[str, Any]:
-        ...
 
 
 class OcrExtractor(Protocol):

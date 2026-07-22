@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Protocol, Sequence, Set, Tuple
 
-from utils.artifacts import fingerprint, set_fingerprint
+from utils.artifacts import set_fingerprint
 from utils.errors import TruthError
 
 from .common import iso_date, optional_date, require, unique_ids

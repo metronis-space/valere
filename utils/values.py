@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from datetime import date, datetime, timezone
-from typing import Any, Dict, Iterable, List, Optional, Set, Type
+from typing import Any, Dict, Iterable, List, Type
 
 from .errors import ValereError
 

@@ -10,9 +10,10 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Set, 
 
 from utils.artifacts import fingerprint, set_fingerprint
 from utils.errors import TruthError
+from utils.values import deep_get
 
 from .authority import AuthorityGraph
-from .common import deep_get, iso_date, optional_date, referenced_facts, require, unique_ids
+from .common import iso_date, optional_date, referenced_facts, require, unique_ids
 from .ontology import OntologyRegistry
 
 

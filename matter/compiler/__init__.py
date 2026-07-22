@@ -12,6 +12,7 @@ from utils.errors import MatterError
 
 from ..issues import ISSUE_TEMPLATE, analyze_issue, build_scenarios, dag_is_acyclic
 from ..state import build_world, validate_world
+from .document_world import compile_phase3
 
 
 EXPECTED_CHANGED = {

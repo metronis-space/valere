@@ -37,3 +37,10 @@ Phase 2 then writes its test-only canonical-state exit artifact alongside them:
 ```bash
 python3 -m matter demo-generate
 ```
+
+Phase 3 renders and independently validates its document world in the same
+ignored demo directory:
+
+```bash
+python3 -m matter document-world
+```

@@ -7,11 +7,11 @@ from datetime import date, datetime, timezone
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Set
 
 from utils.artifacts import fingerprint, set_fingerprint, verify_fingerprint
+from utils.errors import TruthError
 from utils.pov import HARVEY_COMMIT, HARVEY_POV_TASK, POV_WORKFLOW, POV_WORKSTREAM
 
 from .authority import AuthorityGraph, InMemoryCitator, classification_metrics
 from .common import iso_date, iso_datetime, require
-from .errors import TruthError
 from .ontology import OntologyRegistry
 from .rules import RuleCompiler, ar_001_effort_experiment, counterfactual_check, held_out_coverage
 from .sources import AuthoritySnapshotBuilder

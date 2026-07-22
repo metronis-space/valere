@@ -7,9 +7,8 @@ from typing import Any, Dict, Iterable, Optional, Set
 
 from utils.artifacts import canonical_json, fingerprint
 from utils.artifacts import without_fingerprint as strip_fingerprint_fields
+from utils.errors import TruthError
 from utils.values import coerce_date, coerce_datetime, deep_get, require_concrete, unique_index
-
-from .errors import TruthError
 
 
 def require(value: Any, path: str) -> Any:

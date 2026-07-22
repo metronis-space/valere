@@ -7,6 +7,7 @@ from datetime import date
 from typing import Any, Dict, List, Optional, Set
 
 from utils.catalogs import RIGHTS_DECISIONS, RIGHTS_USES
+from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport
 
 from .common import (
     duplicates,
@@ -16,7 +17,6 @@ from .common import (
     require_mapping,
     require_value,
 )
-from .errors import BoundaryError, ValidationReport
 
 
 KNOWN_LICENSES: Dict[str, Dict[str, Any]] = {

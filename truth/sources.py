@@ -14,9 +14,9 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 from utils.artifacts import atomic_write_json, fingerprint, set_fingerprint, verify_fingerprint
+from utils.errors import TruthError
 
 from .common import iso_date, iso_datetime, optional_date, require, unique_ids, without_fingerprint
-from .errors import TruthError
 
 
 SOURCE_TYPES = {"OFFICIAL", "LICENSED", "PUBLIC_BENCHMARK", "SYNTHETIC"}

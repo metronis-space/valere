@@ -10,6 +10,14 @@ class ValereError(RuntimeError):
     """Base class for expected, fail-closed Valere errors."""
 
 
+class BoundaryError(ValereError):
+    """Raised when a fail-closed Phase 0 control rejects an operation."""
+
+
+class TruthError(ValereError):
+    """Raised when Phase 1 cannot produce a trustworthy result."""
+
+
 class DocumentError(ValereError):
     """Raised when a configuration or artifact cannot be loaded safely."""
 
@@ -62,3 +70,21 @@ class ValidationReport:
             "warning_count": sum(item.severity == "WARNING" for item in self.issues),
             "issues": [item.to_dict() for item in self.issues],
         }
+
+
+class BoundaryValidationReport(ValidationReport):
+    """Validation report that fails closed with ``BoundaryError`` by default."""
+
+    def require_ok(self, error_type: Type[ValereError] = BoundaryError) -> None:
+        super().require_ok(error_type)
+
+
+__all__ = [
+    "BoundaryError",
+    "BoundaryValidationReport",
+    "DocumentError",
+    "TruthError",
+    "ValereError",
+    "ValidationIssue",
+    "ValidationReport",
+]

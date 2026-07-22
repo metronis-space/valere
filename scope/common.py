@@ -11,8 +11,7 @@ from utils.values import (
     duplicates,
     is_unresolved,
 )
-
-from .errors import ValidationReport
+from utils.errors import BoundaryValidationReport as ValidationReport
 
 
 def require_value(report: ValidationReport, data: Dict[str, Any], key: str, path: str) -> Any:

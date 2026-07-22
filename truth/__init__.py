@@ -1,8 +1,9 @@
 """Executable Phase 1 truth and policy kernel."""
 
+from utils.errors import TruthError
+
 from .authority import AuthorityGraph, InMemoryCitator, SupportDecision, classification_metrics
 from .compiler import Phase1Compiler
-from .errors import TruthError
 from .ontology import OntologyRegistry, registry_impact
 from .rules import (
     RuleCompiler,

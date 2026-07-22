@@ -7,9 +7,9 @@ from datetime import date, datetime, timezone
 from typing import Any, Dict, Optional
 
 from utils.artifacts import fingerprint, set_fingerprint
+from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport
 
 from .authority import high_severity_ownership_report, validate_authority_matrix
-from .errors import ValidationReport
 from .governance import control_coverage_report, validate_governance_policy
 from .manifest import approval_fingerprint, compile_manifest, validate_manifest
 from .rights import ar_000_report, validate_rights_register
@@ -164,8 +164,6 @@ class Phase0Compiler:
         if artifact["status"] != "READY":
             errors = artifact["validation"]["issues"]
             detail = "; ".join("%s [%s]" % (item["path"], item["code"]) for item in errors[:10])
-            from .errors import BoundaryError
-
             raise BoundaryError("Phase 0 exit is blocked: %s" % detail)
         # This separately exercises compilation and enriches the artifact with
         # the closed workflow contract only after all cross-contract gates pass.
@@ -188,8 +186,6 @@ class Phase0Compiler:
 
         source_documents = (manifest, rights, governance, authority)
         if not all(document.get("test_fixture") is True for document in source_documents):
-            from .errors import BoundaryError
-
             raise BoundaryError("Simulation requires test_fixture: true on all four contracts")
         simulated = [copy.deepcopy(document) for document in source_documents]
         for document in simulated:

@@ -9,10 +9,10 @@ from pathlib import Path
 
 from scope.compiler import Phase0Compiler
 from scope.demo import build_demo_bundle as build_phase0_demo_bundle
+from utils.errors import TruthError
 from truth.authority import AuthorityGraph, InMemoryCitator, classification_metrics
 from truth.compiler import Phase1Compiler
 from truth.demo import DEMO_AS_OF, build_demo_bundle
-from truth.errors import TruthError
 from truth.ontology import OntologyRegistry, registry_impact
 from truth.rules import (
     RuleCompiler,

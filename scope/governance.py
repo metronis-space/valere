@@ -8,6 +8,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Sequence
 
 from utils.catalogs import DEPLOYMENT_TIERS, REQUIRED_GOVERNANCE_CONTROLS
+from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport
 
 from .common import (
     duplicates,
@@ -16,7 +17,6 @@ from .common import (
     require_mapping,
     require_value,
 )
-from .errors import BoundaryError, ValidationReport
 
 
 DEFAULT_PII_PATTERNS = {

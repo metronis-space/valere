@@ -11,7 +11,7 @@ from scope.authority import AuthorityEngine, read_audit_log, validate_authority_
 from scope.catalog import MA_WORKSTREAM_CATALOG, REQUIRED_GOVERNANCE_CONTROLS, RIGHTS_USES, WORKFLOW_CATALOG
 from scope.compiler import Phase0Compiler
 from scope.demo import build_demo_bundle
-from scope.errors import BoundaryError
+from utils.errors import BoundaryError
 from scope.governance import GovernanceEngine
 from scope.manifest import approval_fingerprint, change_impact, validate_manifest
 from scope.rights import RightsRegistry, ar_000_report, parse_license_or_contract, validate_rights_register

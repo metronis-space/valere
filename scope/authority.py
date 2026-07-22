@@ -12,6 +12,7 @@ from typing import Any, Dict, List, Optional, Sequence, Set
 
 from utils.artifacts import canonical_json
 from utils.catalogs import DEPLOYMENT_TIERS, SEVERITIES
+from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport
 
 from .common import (
     duplicates,
@@ -20,7 +21,6 @@ from .common import (
     require_mapping,
     require_value,
 )
-from .errors import BoundaryError, ValidationReport
 
 
 def _valid_at(value: Dict[str, Any], at: datetime) -> bool:

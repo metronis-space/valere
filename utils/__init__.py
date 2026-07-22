@@ -10,10 +10,21 @@ from .artifacts import (
     verify_fingerprint,
     without_fingerprint,
 )
-from .errors import DocumentError, ValereError, ValidationIssue, ValidationReport
+from .errors import (
+    BoundaryError,
+    BoundaryValidationReport,
+    DocumentError,
+    TruthError,
+    ValereError,
+    ValidationIssue,
+    ValidationReport,
+)
 
 __all__ = [
+    "BoundaryError",
+    "BoundaryValidationReport",
     "DocumentError",
+    "TruthError",
     "ValereError",
     "ValidationIssue",
     "ValidationReport",

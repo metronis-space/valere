@@ -4,8 +4,9 @@ The package deliberately separates executable validation from the commercial,
 legal, and human decisions that the software is not authorized to invent.
 """
 
+from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport, ValidationIssue
+
 from .compiler import Phase0Compiler
-from .errors import BoundaryError, ValidationIssue, ValidationReport
 
 __all__ = [
     "BoundaryError",
@@ -15,4 +16,3 @@ __all__ = [
 ]
 
 __version__ = "0.1.0"
-

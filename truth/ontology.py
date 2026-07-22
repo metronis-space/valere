@@ -9,9 +9,9 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Set, 
 
 from utils.artifacts import canonical_json, fingerprint, set_fingerprint
 from utils.catalogs import MA_WORKSTREAM_CATALOG
+from utils.errors import TruthError
 
 from .common import require, unique_ids
-from .errors import TruthError
 
 
 TYPE_CATEGORIES = {

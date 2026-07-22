@@ -14,6 +14,7 @@ from utils.catalogs import (
     TRANSACTION_STRUCTURES,
     WORKFLOW_CATALOG,
 )
+from utils.errors import BoundaryError, BoundaryValidationReport as ValidationReport
 from .common import (
     duplicates,
     parse_date,
@@ -22,7 +23,6 @@ from .common import (
     require_mapping,
     require_value,
 )
-from .errors import BoundaryError, ValidationReport
 
 
 APPROVAL_ROLES = {"commercial-sponsor", "legal-owner", "product-owner"}

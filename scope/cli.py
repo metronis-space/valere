@@ -9,11 +9,11 @@ from pathlib import Path
 from typing import Any, Dict, Optional, Sequence
 
 from utils.cli import print_json
+from utils.errors import BoundaryError
 
 from .authority import AuthorityEngine
 from .compiler import Phase0Compiler
 from .demo import build_demo_bundle, write_demo_bundle
-from .errors import BoundaryError
 from .governance import GovernanceEngine
 from .io import atomic_write_json, load_document
 from .manifest import change_impact

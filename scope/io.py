@@ -4,9 +4,7 @@ from typing import Any, Dict
 
 from utils.artifacts import atomic_write_json, atomic_write_yaml, canonical_json, fingerprint
 from utils.artifacts import load_document as load_shared_document
-from utils.errors import DocumentError
-
-from .errors import BoundaryError
+from utils.errors import BoundaryError, DocumentError
 
 
 def load_document(path: str) -> Dict[str, Any]:

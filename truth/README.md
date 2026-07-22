@@ -59,8 +59,8 @@ uv run valere-truth validate \
 - `demo.py` — fictional single-task Harvey LAB M&A fixture pinned to commit
   `845a08840869b21a5c11958aae58bf5f00a7b775`.
 - `cli.py` / `__main__.py` — command-line interface.
-- `common.py` / `errors.py` — Phase 1 adapters over the dependency-neutral
-  primitives in `utils/`.
+- `common.py` — Phase 1 validation adapters over dependency-neutral primitives;
+  shared exception types live in `utils/errors.py`.
 
 There are intentionally no component subdirectories under `truth/`.
 

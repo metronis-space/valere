@@ -5,7 +5,8 @@ phase. Domain engines do not live here.
 
 - `artifacts.py` owns canonical JSON, SHA-256 fingerprints, integrity checks,
   document loading, and atomic JSON/YAML writes.
-- `errors.py` owns the common error base and validation-report primitives.
+- `errors.py` owns all shared and phase-specific exception types plus
+  validation-report primitives.
 - `values.py` owns unresolved-value, date/time, lookup, and unique-index helpers.
 - `catalogs.py` owns closed cross-phase workflow and M&A catalogs.
 - `pov.py` is the single source of truth for the bounded Harvey LAB POV IDs.

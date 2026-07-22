@@ -9,10 +9,10 @@ from datetime import date
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Set, Tuple
 
 from utils.artifacts import fingerprint, set_fingerprint
+from utils.errors import TruthError
 
 from .authority import AuthorityGraph
 from .common import deep_get, iso_date, optional_date, referenced_facts, require, unique_ids
-from .errors import TruthError
 from .ontology import OntologyRegistry
 
 

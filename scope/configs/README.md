@@ -24,3 +24,10 @@ M&A-only POV pinned to one `tasks/corporate-ma` change-of-control diligence
 task. Its fictional contracts exercise every gate and may produce only
 `TEST_READY`. That artifact may feed Phase 1 POV work, but never a real Phase 0
 exit, production authorization, or real-client claim.
+
+Phase 1 writes its JSON bundle and test-only exit artifact into the same
+directory without adding YAML outside `scope/configs/`:
+
+```bash
+python3 -m truth demo-generate --out-dir scope/configs/demo
+```

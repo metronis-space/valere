@@ -10,7 +10,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Set
 
-from .catalog import DEPLOYMENT_TIERS, SEVERITIES
+from utils.artifacts import canonical_json
+from utils.catalogs import DEPLOYMENT_TIERS, SEVERITIES
+
 from .common import (
     duplicates,
     parse_datetime,
@@ -19,7 +21,6 @@ from .common import (
     require_value,
 )
 from .errors import BoundaryError, ValidationReport
-from .io import canonical_json
 
 
 def _valid_at(value: Dict[str, Any], at: datetime) -> bool:

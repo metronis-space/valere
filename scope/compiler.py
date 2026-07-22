@@ -6,10 +6,11 @@ import copy
 from datetime import date, datetime, timezone
 from typing import Any, Dict, Optional
 
+from utils.artifacts import fingerprint, set_fingerprint
+
 from .authority import high_severity_ownership_report, validate_authority_matrix
 from .errors import ValidationReport
 from .governance import control_coverage_report, validate_governance_policy
-from .io import fingerprint
 from .manifest import approval_fingerprint, compile_manifest, validate_manifest
 from .rights import ar_000_report, validate_rights_register
 
@@ -149,7 +150,7 @@ class Phase0Compiler:
             },
             "validation": report.to_dict(),
         }
-        artifact["artifact_fingerprint"] = fingerprint(artifact)
+        set_fingerprint(artifact)
         return artifact
 
     def compile(
@@ -169,9 +170,7 @@ class Phase0Compiler:
         # This separately exercises compilation and enriches the artifact with
         # the closed workflow contract only after all cross-contract gates pass.
         artifact["compiled_scope"] = compile_manifest(manifest, require_approved=True)
-        artifact["artifact_fingerprint"] = fingerprint(
-            {key: value for key, value in artifact.items() if key != "artifact_fingerprint"}
-        )
+        set_fingerprint(artifact)
         return artifact
 
     def simulate(
@@ -216,7 +215,5 @@ class Phase0Compiler:
         }
         if ready:
             artifact["compiled_scope"] = compile_manifest(simulated_manifest, require_approved=True)
-        artifact["artifact_fingerprint"] = fingerprint(
-            {key: value for key, value in artifact.items() if key != "artifact_fingerprint"}
-        )
+        set_fingerprint(artifact)
         return artifact

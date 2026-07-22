@@ -5,7 +5,8 @@ from __future__ import annotations
 import copy
 from typing import Any, Dict, Iterable, List, Tuple
 
-from .catalog import (
+from utils.artifacts import fingerprint
+from utils.catalogs import (
     DELIVERABLE_KINDS,
     DEPLOYMENT_TIERS,
     MA_WORKSTREAM_CATALOG,
@@ -22,7 +23,6 @@ from .common import (
     require_value,
 )
 from .errors import BoundaryError, ValidationReport
-from .io import fingerprint
 
 
 APPROVAL_ROLES = {"commercial-sponsor", "legal-owner", "product-owner"}

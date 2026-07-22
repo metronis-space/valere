@@ -4,19 +4,34 @@ from __future__ import annotations
 
 import copy
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
-from .catalog import REQUIRED_GOVERNANCE_CONTROLS, RIGHTS_USES, WORKFLOW_CATALOG
+from utils.catalogs import REQUIRED_GOVERNANCE_CONTROLS, RIGHTS_USES, WORKFLOW_CATALOG
+from utils.pov import (
+    HARVEY_COMMIT,
+    HARVEY_MA_ROOT,
+    HARVEY_POV_TASK,
+    HARVEY_POV_TASK_URL,
+    HARVEY_REPOSITORY,
+    POV_BUYER_ID,
+    POV_DATE,
+    POV_LEGAL_ACTOR_ID,
+    POV_MATTER_ID,
+    POV_PRODUCT_ACTOR_ID,
+    POV_SPONSOR_ACTOR_ID,
+    POV_TIMESTAMP,
+    POV_WORKFLOW,
+    POV_WORKSTREAM,
+)
+
 from .io import atomic_write_yaml, load_document
 from .manifest import approval_fingerprint
 
 
-DEMO_NOW = "2026-07-22T12:00:00+00:00"
-DEMO_MATTER = "harvey-ma-pov-change-control"
-DEMO_ORG = "harvey-lab-ma-pov"
-HARVEY_COMMIT = "845a08840869b21a5c11958aae58bf5f00a7b775"
-HARVEY_MA_ROOT = "tasks/corporate-ma"
-HARVEY_POV_TASK = "tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts"
+DEMO_NOW = POV_TIMESTAMP
+DEMO_MATTER = POV_MATTER_ID
+DEMO_ORG = POV_BUYER_ID
+DEFAULT_TEMPLATE_DIR = Path(__file__).with_name("configs")
 
 
 def _actor(actor_id: str, display_name: str, roles: list, actions: list) -> Dict[str, Any]:
@@ -51,8 +66,8 @@ def _actor(actor_id: str, display_name: str, roles: list, actions: list) -> Dict
     }
 
 
-def build_demo_bundle(template_dir: str = "scope/configs") -> Dict[str, Dict[str, Any]]:
-    root = Path(template_dir)
+def build_demo_bundle(template_dir: Optional[str] = None) -> Dict[str, Dict[str, Any]]:
+    root = Path(template_dir) if template_dir else DEFAULT_TEMPLATE_DIR
     manifest = load_document(str(root / "ScopeManifest.template.yaml"))
     rights = load_document(str(root / "RightsRegister.template.yaml"))
     governance = load_document(str(root / "DataGovernancePolicy.template.yaml"))
@@ -71,15 +86,15 @@ def build_demo_bundle(template_dir: str = "scope/configs") -> Dict[str, Dict[str
             },
             "pilot_matter_id": DEMO_MATTER,
             "workflow": {
-                "selected": "counterparty-paper-review",
-                "mapping": copy.deepcopy(WORKFLOW_CATALOG["counterparty-paper-review"]),
+                "selected": POV_WORKFLOW,
+                "mapping": copy.deepcopy(WORKFLOW_CATALOG[POV_WORKFLOW]),
             },
             "high_severity_ambiguities": [],
             "required_asset_uses": [
                 {"asset_id": "harvey-lab-ma-change-control-task", "uses": ["ingest", "transform", "evaluate"]}
             ],
             "pov_source": {
-                "repository": "https://github.com/harveyai/harvey-labs",
+                "repository": HARVEY_REPOSITORY,
                 "revision": HARVEY_COMMIT,
                 "ma_root": HARVEY_MA_ROOT,
                 "included_task_paths": [HARVEY_POV_TASK],
@@ -93,7 +108,7 @@ def build_demo_bundle(template_dir: str = "scope/configs") -> Dict[str, Dict[str
         }
     )
     for item in manifest["ma_scope"]["workstreams"]:
-        included = item["id"] == "contracts-consents"
+        included = item["id"] == POV_WORKSTREAM
         item.update(
             {
                 "status": "IN_SCOPE" if included else "OUT_OF_SCOPE",
@@ -111,7 +126,7 @@ def build_demo_bundle(template_dir: str = "scope/configs") -> Dict[str, Dict[str
         "forum": "Delaware Court of Chancery (synthetic test selection)",
         "entity_law": "Delaware General Corporation Law (synthetic test selection)",
         "regulatory_overlays": [
-            {"name": "Hart-Scott-Rodino Act", "applicability": "synthetic screen-and-escalate", "owner": "synthetic-legal"}
+            {"name": "Hart-Scott-Rodino Act", "applicability": "synthetic screen-and-escalate", "owner": POV_LEGAL_ACTOR_ID}
         ],
         "legal_cutoff_date": "2026-07-01",
     }
@@ -123,7 +138,7 @@ def build_demo_bundle(template_dir: str = "scope/configs") -> Dict[str, Dict[str
             "model_id": "synthetic-model-v1",
             "revision": "synthetic-revision-001",
             "access_method": "MOCK_ADAPTER",
-            "access_owner": "synthetic-product",
+            "access_owner": POV_PRODUCT_ACTOR_ID,
             "access_confirmed": True,
             "governance_route_id": "synthetic-route",
         },
@@ -133,36 +148,36 @@ def build_demo_bundle(template_dir: str = "scope/configs") -> Dict[str, Dict[str
             {"kind": "memo", "schema_ref": "harvey-lab:%s/task.json#coc-analysis-report.docx" % HARVEY_POV_TASK, "required_sections": ["findings", "evidence", "escalations"]}
         ],
         "success_metrics": [
-            {"id": "harvey-57-criteria-all-pass", "measure": "all 57 Harvey LAB task criteria pass", "operator": ">=", "threshold": 1.0, "owner": "synthetic-product"}
+            {"id": "harvey-57-criteria-all-pass", "measure": "all 57 Harvey LAB task criteria pass", "operator": ">=", "threshold": 1.0, "owner": POV_PRODUCT_ACTOR_ID}
         ],
         "kill_criteria": [
-            {"id": "synthetic-severe-false-accept", "measure": "severe false accepts", "operator": ">", "threshold": 0, "owner": "synthetic-legal"}
+            {"id": "synthetic-severe-false-accept", "measure": "severe false accepts", "operator": ">", "threshold": 0, "owner": POV_LEGAL_ACTOR_ID}
         ],
     }
     for exclusion in manifest["exclusions_register"]:
-        exclusion["owner"] = "synthetic-legal"
+        exclusion["owner"] = POV_LEGAL_ACTOR_ID
     manifest["approvals"] = []
     signed = approval_fingerprint(manifest)
     manifest["approvals"] = [
-        {"role": "commercial-sponsor", "actor_id": "synthetic-sponsor", "decision": "APPROVE", "approved_at": DEMO_NOW, "document_fingerprint": signed},
-        {"role": "legal-owner", "actor_id": "synthetic-legal", "decision": "APPROVE", "approved_at": DEMO_NOW, "document_fingerprint": signed},
-        {"role": "product-owner", "actor_id": "synthetic-product", "decision": "APPROVE", "approved_at": DEMO_NOW, "document_fingerprint": signed},
+        {"role": "commercial-sponsor", "actor_id": POV_SPONSOR_ACTOR_ID, "decision": "APPROVE", "approved_at": DEMO_NOW, "document_fingerprint": signed},
+        {"role": "legal-owner", "actor_id": POV_LEGAL_ACTOR_ID, "decision": "APPROVE", "approved_at": DEMO_NOW, "document_fingerprint": signed},
+        {"role": "product-owner", "actor_id": POV_PRODUCT_ACTOR_ID, "decision": "APPROVE", "approved_at": DEMO_NOW, "document_fingerprint": signed},
     ]
 
-    rights.update({"test_fixture": True, "register_id": "harvey-ma-pov-rights-001", "rights_owner": "synthetic-legal"})
+    rights.update({"test_fixture": True, "register_id": "harvey-ma-pov-rights-001", "rights_owner": POV_LEGAL_ACTOR_ID})
     parent = rights["assets"][0]
-    parent["source"]["uri"] = "https://github.com/harveyai/harvey-labs"
+    parent["source"]["uri"] = HARVEY_REPOSITORY
     parent["source"]["content_fingerprint"] = "git:" + HARVEY_COMMIT
-    parent["grant"]["reviewed_by"] = "synthetic-legal"
+    parent["grant"]["reviewed_by"] = POV_LEGAL_ACTOR_ID
     parent["grant"]["reviewed_at"] = DEMO_NOW
     parent["grant"]["permissions"] = {use: "ALLOW" for use in RIGHTS_USES}
     task_asset = copy.deepcopy(parent)
     task_asset["asset_id"] = "harvey-lab-ma-change-control-task"
     task_asset["asset_type"] = "BENCHMARK_TASK_SLICE"
     task_asset["source"] = {
-        "uri": "https://github.com/harveyai/harvey-labs/tree/%s/%s" % (HARVEY_COMMIT, HARVEY_POV_TASK),
+        "uri": HARVEY_POV_TASK_URL,
         "content_fingerprint": "git:%s#%s" % (HARVEY_COMMIT, HARVEY_POV_TASK),
-        "acquired_at": "2026-07-22",
+        "acquired_at": POV_DATE,
     }
     task_asset["lineage"] = {
         "parent_asset_ids": ["harvey-lab"],
@@ -175,7 +190,7 @@ def build_demo_bundle(template_dir: str = "scope/configs") -> Dict[str, Dict[str
         {
             "test_fixture": True,
             "policy_id": "harvey-ma-pov-governance-001",
-            "policy_owner": "synthetic-legal",
+            "policy_owner": POV_LEGAL_ACTOR_ID,
             "approval_status": "APPROVED",
         }
     )
@@ -200,43 +215,43 @@ def build_demo_bundle(template_dir: str = "scope/configs") -> Dict[str, Dict[str
     ]
     for rule in governance["retention"]["rules"]:
         rule["days"] = 30 if rule["classification"] != "PUBLIC" else 365
-    governance["legal_hold"].update({"owner": "synthetic-legal", "intake": "synthetic-legal-hold"})
+    governance["legal_hold"].update({"owner": POV_LEGAL_ACTOR_ID, "intake": "synthetic-legal-hold"})
     governance["dlp_export"]["allowed_destinations"] = ["synthetic-vdr"]
     governance["incident_response"] = {
-        "owner": "synthetic-legal",
+        "owner": POV_LEGAL_ACTOR_ID,
         "intake_channel": "synthetic-security-incidents",
         "containment_sla_minutes": 30,
-        "breach_assessment_owner": "synthetic-legal",
+        "breach_assessment_owner": POV_LEGAL_ACTOR_ID,
     }
     governance["control_coverage"] = [
-        {"control_id": control, "status": "IMPLEMENTED", "owner": "synthetic-legal", "enforcement_point": "synthetic-adapter", "test_ids": ["test-" + control]}
+        {"control_id": control, "status": "IMPLEMENTED", "owner": POV_LEGAL_ACTOR_ID, "enforcement_point": "synthetic-adapter", "test_ids": ["test-" + control]}
         for control in sorted(REQUIRED_GOVERNANCE_CONTROLS)
     ]
-    governance["approval"] = {"actor_id": "synthetic-legal", "role": "governance-owner", "approved_at": DEMO_NOW}
+    governance["approval"] = {"actor_id": POV_LEGAL_ACTOR_ID, "role": "governance-owner", "approved_at": DEMO_NOW}
 
     actions = [item["action_type"] for item in authority["approval_policies"]]
     authority.update(
         {
             "test_fixture": True,
             "matrix_id": "harvey-ma-pov-authority-001",
-            "authority_owner": "synthetic-legal",
+            "authority_owner": POV_LEGAL_ACTOR_ID,
             "approval_status": "APPROVED",
             "actors": [
-                _actor("synthetic-sponsor", "Synthetic Commercial Sponsor", ["commercial-sponsor", "customer-owner"], actions),
-                _actor("synthetic-legal", "Synthetic Supervising Lawyer", ["legal-owner", "lawyer-of-record", "release-approver", "rights-owner", "governance-owner"], actions),
-                _actor("synthetic-product", "Synthetic Product Owner", ["product-owner", "release-approver"], actions),
+                _actor(POV_SPONSOR_ACTOR_ID, "Synthetic Commercial Sponsor", ["commercial-sponsor", "customer-owner"], actions),
+                _actor(POV_LEGAL_ACTOR_ID, "Synthetic Supervising Lawyer", ["legal-owner", "lawyer-of-record", "release-approver", "rights-owner", "governance-owner"], actions),
+                _actor(POV_PRODUCT_ACTOR_ID, "Synthetic Product Owner", ["product-owner", "release-approver"], actions),
             ],
         }
     )
     authority["responsibility"] = {
-        "lawyer_of_record_by_matter": {DEMO_MATTER: "synthetic-legal"},
-        "customer_owner_by_matter": {DEMO_MATTER: "synthetic-sponsor"},
-        "rights_owner": "synthetic-legal",
-        "governance_owner": "synthetic-legal",
-        "release_owner": "synthetic-product",
+        "lawyer_of_record_by_matter": {DEMO_MATTER: POV_LEGAL_ACTOR_ID},
+        "customer_owner_by_matter": {DEMO_MATTER: POV_SPONSOR_ACTOR_ID},
+        "rights_owner": POV_LEGAL_ACTOR_ID,
+        "governance_owner": POV_LEGAL_ACTOR_ID,
+        "release_owner": POV_PRODUCT_ACTOR_ID,
     }
     authority["release_signoff_workflow"]["e_signature_provider"] = "SYNTHETIC_E_SIGNATURE_ADAPTER"
-    authority["approval"] = {"actor_id": "synthetic-legal", "role": "legal-owner", "approved_at": DEMO_NOW}
+    authority["approval"] = {"actor_id": POV_LEGAL_ACTOR_ID, "role": "legal-owner", "approved_at": DEMO_NOW}
 
     return {
         "manifest": manifest,

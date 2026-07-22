@@ -2,19 +2,17 @@
 
 from __future__ import annotations
 
-from datetime import date, datetime, timezone
-from typing import Any, Dict, Iterable, List, Optional
+from datetime import date, datetime
+from typing import Any, Dict, List, Optional
+
+from utils.values import (
+    coerce_date,
+    coerce_datetime,
+    duplicates,
+    is_unresolved,
+)
 
 from .errors import ValidationReport
-
-
-UNRESOLVED_MARKERS = {"", "TBD", "UNRESOLVED", "UNKNOWN", "PENDING"}
-
-
-def is_unresolved(value: Any) -> bool:
-    return value is None or (
-        isinstance(value, str) and value.strip().upper() in UNRESOLVED_MARKERS
-    )
 
 
 def require_value(report: ValidationReport, data: Dict[str, Any], key: str, path: str) -> Any:
@@ -43,12 +41,8 @@ def parse_date(value: Any, path: str, report: ValidationReport) -> Optional[date
         report.add(path, "unresolved", "A concrete ISO-8601 date is required")
         return None
     try:
-        if isinstance(value, datetime):
-            return value.date()
-        if isinstance(value, date):
-            return value
-        return date.fromisoformat(str(value))
-    except ValueError:
+        return coerce_date(value)
+    except (TypeError, ValueError):
         report.add(path, "date", "Expected ISO-8601 date (YYYY-MM-DD)")
         return None
 
@@ -58,25 +52,13 @@ def parse_datetime(value: Any, path: str, report: ValidationReport) -> Optional[
         report.add(path, "unresolved", "A concrete ISO-8601 timestamp is required")
         return None
     try:
-        if isinstance(value, datetime):
-            parsed = value
-        else:
-            parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
-        if parsed.tzinfo is None:
+        return coerce_datetime(value)
+    except ValueError as exc:
+        if "UTC offset" in str(exc):
             report.add(path, "timezone", "Timestamp must include a UTC offset")
             return None
-        return parsed.astimezone(timezone.utc)
-    except ValueError:
         report.add(path, "datetime", "Expected ISO-8601 timestamp with UTC offset")
         return None
-
-
-def duplicates(values: Iterable[Any]) -> List[Any]:
-    seen = set()
-    repeated = []
-    for value in values:
-        if value in seen and value not in repeated:
-            repeated.append(value)
-        seen.add(value)
-    return repeated
-
+    except TypeError:
+        report.add(path, "datetime", "Expected ISO-8601 timestamp with UTC offset")
+        return None

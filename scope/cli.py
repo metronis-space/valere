@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import argparse
-import json
 import sys
 from datetime import date
 from pathlib import Path
 from typing import Any, Dict, Optional, Sequence
+
+from utils.cli import print_json
 
 from .authority import AuthorityEngine
 from .compiler import Phase0Compiler
@@ -26,11 +27,6 @@ def _phase_documents(args: argparse.Namespace) -> Sequence[Dict[str, Any]]:
         load_document(args.governance),
         load_document(args.authority),
     )
-
-
-def _print(value: Any) -> None:
-    json.dump(value, sys.stdout, indent=2, sort_keys=True, ensure_ascii=False)
-    sys.stdout.write("\n")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -84,7 +80,7 @@ def build_parser() -> argparse.ArgumentParser:
     audit.add_argument("--approvals", help="Required for EXCEPTION_OVERRIDE")
 
     demo = subparsers.add_parser("demo-generate", help="Generate and validate a fictional design-partner bundle")
-    demo.add_argument("--templates", default="scope/configs")
+    demo.add_argument("--templates", help="Template directory (defaults to the templates bundled with scope)")
     demo.add_argument("--out-dir", default="scope/configs/demo")
     return parser
 
@@ -99,24 +95,24 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 artifact = compiler.evaluate(*documents)
                 if args.report:
                     atomic_write_json(args.report, artifact)
-                _print(artifact)
+                print_json(artifact)
                 return 0 if artifact["status"] == "READY" else 2
             artifact = compiler.compile(*documents)
             atomic_write_json(args.out, artifact)
-            _print({"status": artifact["status"], "out": args.out, "artifact_fingerprint": artifact["artifact_fingerprint"]})
+            print_json({"status": artifact["status"], "out": args.out, "artifact_fingerprint": artifact["artifact_fingerprint"]})
             return 0
 
         if args.command == "rights-check":
             today = date.fromisoformat(args.as_of) if args.as_of else None
             decision = RightsRegistry(load_document(args.rights), today=today).decide(args.asset, args.use)
-            _print(decision.to_dict())
+            print_json(decision.to_dict())
             return 0 if decision.allowed else 3
 
         if args.command == "impact":
             result = change_impact(load_document(args.previous), load_document(args.current))
             if args.out:
                 atomic_write_json(args.out, result)
-            _print(result)
+            print_json(result)
             return 0
 
         if args.command == "classify":
@@ -128,7 +124,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 declared_level=args.declared_level,
                 privilege_confirmed=args.privilege_confirmed,
             )
-            _print(result.to_dict())
+            print_json(result.to_dict())
             return 0
 
         if args.command == "authorize":
@@ -136,7 +132,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             approval_document = load_document(args.approvals)
             approvals = approval_document.get("approvals", [])
             result = AuthorityEngine(load_document(args.authority)).evaluate_signoff(request, approvals)
-            _print(result.to_dict())
+            print_json(result.to_dict())
             return 0 if result.approved else 4
 
         if args.command == "audit-append":
@@ -154,7 +150,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     approval_document.get("approvals", []),
                     payload,
                 )
-            _print(event)
+            print_json(event)
             return 0
 
         if args.command == "demo-generate":
@@ -168,7 +164,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             )
             artifact_path = str(Path(args.out_dir) / "phase-0-test-exit.json")
             atomic_write_json(artifact_path, artifact)
-            _print(
+            print_json(
                 {
                     "status": artifact["status"],
                     "production_eligible": False,

@@ -6,7 +6,8 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Any, Dict, List, Optional, Set
 
-from .catalog import RIGHTS_DECISIONS, RIGHTS_USES
+from utils.catalogs import RIGHTS_DECISIONS, RIGHTS_USES
+
 from .common import (
     duplicates,
     parse_date,

@@ -5,15 +5,19 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "valere-boundary"
 version = "0.1.0"
-description = "Executable Phase 0 boundary, rights, governance, and authority controls"
+description = "Executable legal-AI boundary, truth, authority, ontology, and policy controls"
 requires-python = ">=3.9"
 dependencies = ["PyYAML>=6.0,<7"]
 
 [project.scripts]
 valere-boundary = "scope.cli:main"
+valere-truth = "truth.cli:main"
 
 [tool.setuptools]
-packages = ["scope"]
+packages = ["scope", "truth", "utils"]
+
+[tool.setuptools.package-data]
+scope = ["configs/*.md", "configs/*.yaml"]
 
 [tool.uv]
 package = true

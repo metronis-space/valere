@@ -7,7 +7,8 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Sequence
 
-from .catalog import DEPLOYMENT_TIERS, REQUIRED_GOVERNANCE_CONTROLS
+from utils.catalogs import DEPLOYMENT_TIERS, REQUIRED_GOVERNANCE_CONTROLS
+
 from .common import (
     duplicates,
     parse_datetime,
